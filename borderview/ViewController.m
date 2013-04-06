@@ -7,23 +7,31 @@
 //
 
 #import "ViewController.h"
+#import "BorderView.h"
 
 @interface ViewController ()
+
+@property (strong, nonatomic) IBOutlet UISlider *topSlider;
+@property (strong, nonatomic) IBOutlet UISlider *leftSlider;
+@property (strong, nonatomic) IBOutlet UISlider *bottomSlider;
+@property (strong, nonatomic) IBOutlet UISlider *rightSlider;
+@property (strong, nonatomic) IBOutlet BorderView *borderView;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self updateBorderViewBorderSize];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)sliderValueDidChange {
+    [self updateBorderViewBorderSize];
+}
+
+- (void)updateBorderViewBorderSize {
+    self.borderView.borderSize = UIEdgeInsetsMake(self.topSlider.value, self.leftSlider.value, self.bottomSlider.value, self.rightSlider.value);
 }
 
 @end
